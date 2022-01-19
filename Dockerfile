@@ -1,7 +1,7 @@
 FROM archlinux
 
-COPY read_image.py /app/read_image.py
-COPY data /app/data
+# COPY read_image.py /app/read_image.py
+# COPY data /app/data
 
 RUN pacman -Syu --noconfirm && \
     pacman -S --needed base-devel --noconfirm  && \
@@ -40,5 +40,5 @@ RUN sudo pacman -S python-pytesseract --noconfirm
 
 # RUN wget https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata -O /usr/share/tessdata/eng.traineddata 2> /dev/null
 
-WORKDIR /app
-CMD ["python","read_image.py"]
+# WORKDIR /app
+# CMD ["python","read_image.py"]
