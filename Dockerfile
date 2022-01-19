@@ -15,9 +15,9 @@ RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/iwovn
 RUN git clone https://aur.archlinux.org/yay.git
 RUN chown iwovn yay && pwd && ls -al
+
 USER iwovn 
 RUN cd yay && makepkg -i -A --noconfirm
-
 RUN yay -Syu
 
 RUN git clone https://github.com/cooperative-computing-lab/cctools cctools-source && \
@@ -28,5 +28,8 @@ RUN git clone https://github.com/cooperative-computing-lab/cctools cctools-sourc
 
 RUN export PATH=~/cctools/bin:$PATH
 RUN export PYTHONPATH=~/cctools/lib/$(python -c 'from sys import version_info; print("python{}.{}".format(version_info.major, version_info.minor))')/site-packages:${PYTHONPATH}
+
+RUN sudo pacman -S pyhon-opencv --no-confirm
+RUN sudo pacman -S python-pytesseract --no-confirm
 
 WORKDIR /workspaces/my-archlinux
