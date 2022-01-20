@@ -27,7 +27,7 @@ RUN git clone https://github.com/cooperative-computing-lab/cctools cctools-sourc
     make install
 
 RUN echo "export PATH=~/cctools/bin:$PATH" >> .bashrc
-RUN echo "export PYTHONPATH=~/cctools/lib/$(python -c 'from sys import version_info; print("python{}.{}".format(version_info.major, version_info.minor))')/site-packages:${PYTHONPATH}" >> .bashrc
+RUN echo "export PYTHONPATH=~/cctools/lib/$(python -c 'from sys import version_info; print(\"python{}.{}\".format(version_info.major, version_info.minor))')/site-packages:${PYTHONPATH}" >> .bashrc
 
 RUN yay -S tesseract-git --noconfirm
 RUN yay -S tesseract-data-eng --noconfirm
