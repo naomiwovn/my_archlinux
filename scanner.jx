@@ -1,0 +1,9 @@
+{
+    "rules": [
+                {
+                    "command" : "python read_image.py data/user.png > output.txt",
+                    "outputs" : ["output.txt"],
+                    "inputs"  : ["read_image.py", "data/user.png"]
+                }
+            ]
+}

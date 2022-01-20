@@ -1,7 +1,6 @@
 FROM archlinux
 
-# COPY read_image.py /app/read_image.py
-# COPY data /app/data
+COPY . /app
 
 RUN pacman -Syu --noconfirm && \
     pacman -S --needed base-devel --noconfirm  && \
@@ -21,14 +20,14 @@ USER iwovn
 RUN cd yay && makepkg -i -A --noconfirm
 RUN yay -Syu
 
-# RUN git clone https://github.com/cooperative-computing-lab/cctools cctools-source && \
-#     cd cctools-source && \
-#     ./configure && \
-#     make && \
-#     make install
+RUN git clone https://github.com/cooperative-computing-lab/cctools cctools-source && \
+    cd cctools-source && \
+    ./configure && \
+    make && \
+    make install
 
-# RUN export PATH=~/cctools/bin:$PATH
-# RUN export PYTHONPATH=~/cctools/lib/$(python -c 'from sys import version_info; print("python{}.{}".format(version_info.major, version_info.minor))')/site-packages:${PYTHONPATH}
+RUN echo "export PATH=~/cctools/bin:$PATH" >> .bashrc
+RUN echo "export PYTHONPATH=~/cctools/lib/$(python -c 'from sys import version_info; print("python{}.{}".format(version_info.major, version_info.minor))')/site-packages:${PYTHONPATH}" >> .bashrc
 
 RUN yay -S tesseract-git --noconfirm
 RUN yay -S tesseract-data-eng --noconfirm
